@@ -1,5 +1,4 @@
-package cn.itcast.music.service.impl;
-
+package cn.itcast.music.music_service.impl;
 
 import cn.itcast.music.music_dao.UserDao;
 import cn.itcast.music.music_dao.impl.UserDaoImpl;
@@ -12,22 +11,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean regist(User user) {
-        //根据用户名查询用户对象
-        User byUsername = userDao.findByName(user.getUsername());
-        if (byUsername != null) {
-            //存在
+        User registUser = userDao.findByName(user.getUsername());
+        if (registUser != null) {
+            //用户名已存在
             return false;
+        } else {
+            userDao.regist(user);
+            return true;
         }
-        userDao.regist(user);
-        return true;
     }
 
-    /**
-     * 根据用户名、密码查询用户
-     *
-     * @param user
-     * @return
-     */
     @Override
     public User login(User user) {
         return userDao.login(user.getUsername(), user.getPassword());

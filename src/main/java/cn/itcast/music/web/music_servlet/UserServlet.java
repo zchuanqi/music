@@ -1,11 +1,11 @@
-package cn.itcast.music.web.servlet;
+package cn.itcast.music.web.music_servlet;
 
 
 import cn.itcast.music.music_domain.ResultInfo;
 import cn.itcast.music.music_domain.User;
 import cn.itcast.music.music_service.UserService;
 import cn.itcast.music.music_service.impl.UserServiceImpl;
-import cn.itcast.music.util.ByteUtil;
+import cn.itcast.music.web.servlet.BaseServlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -13,14 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-@WebServlet("/user/*")
-public class UserServlet extends BaseServlet{
-
+@WebServlet("/music/user/*")
+public class UserServlet extends BaseServlet {
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1. 取参数
         Map<String, String[]> parameterMap = req.getParameterMap();
