@@ -4,7 +4,6 @@ import cn.itcast.music.music_dao.UserDao;
 import cn.itcast.music.music_domain.User;
 import cn.itcast.music.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 public class UserDaoImpl implements UserDao {
 
@@ -21,7 +20,10 @@ public class UserDaoImpl implements UserDao {
     public User findByName(String username) {
         String sql = "select * from user where username=?";
         User user = null;
-        user = JDBCUtils.getTemplate().queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), username);
+        try{
+            user = JDBCUtils.getTemplate().queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), username);
+        }catch (Exception e){
+        }
         return user;
     }
 
@@ -29,7 +31,10 @@ public class UserDaoImpl implements UserDao {
     public User login(String username, String password) {
         String sql = "select * from user where username=? and password=?";
         User user = null;
-        user = JDBCUtils.getTemplate().queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), username, password);
+        try{
+            user = JDBCUtils.getTemplate().queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), username, password);
+        }catch (Exception e){
+        }
         return user;
     }
 }

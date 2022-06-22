@@ -18,7 +18,19 @@ public class FavoriteDaoImpl implements FavoriteDao {
     public Favorite findOne(String username, int mid) {
         String sql = "select * from favorite where username=? and mid=?";
         Favorite favorite = null;
-        favorite = JDBCUtils.getTemplate().queryForObject(sql, new BeanPropertyRowMapper<Favorite>(Favorite.class), username, mid);
+        try {
+            favorite = JDBCUtils.getTemplate().queryForObject(sql, new BeanPropertyRowMapper<Favorite>(Favorite.class), username, mid);
+        } catch (Exception e) {
+        }
         return favorite;
+    }
+
+    @Override
+    public void removeCollect(String username, int mid) {
+        String sql = "delete from favorite where username=? and mid=?";
+        try {
+            JDBCUtils.getTemplate().update(sql, username, mid);
+        } catch (Exception e) {
+        }
     }
 }

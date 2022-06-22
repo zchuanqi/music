@@ -1,10 +1,10 @@
 package cn.itcast.music.service.impl;
 
 
-import cn.itcast.music.music_dao.UserDao;
-import cn.itcast.music.music_dao.impl.UserDaoImpl;
-import cn.itcast.music.music_domain.User;
-import cn.itcast.music.music_service.UserService;
+import cn.itcast.music.dao.UserDao;
+import cn.itcast.music.dao.impl.UserDaoImpl;
+import cn.itcast.music.domain.User;
+import cn.itcast.music.service.UserService;
 
 public class UserServiceImpl implements UserService {
 
@@ -13,12 +13,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean regist(User user) {
         //根据用户名查询用户对象
-        User byUsername = userDao.findByName(user.getUsername());
+        User byUsername = userDao.findByUsername(user.getUsername());
         if (byUsername != null) {
             //存在
             return false;
         }
-        userDao.regist(user);
+        userDao.save(user);
         return true;
     }
 
@@ -30,6 +30,6 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User login(User user) {
-        return userDao.login(user.getUsername(), user.getPassword());
+        return userDao.findByUsernameAndPassword(user.getUsername(), user.getPassword());
     }
 }

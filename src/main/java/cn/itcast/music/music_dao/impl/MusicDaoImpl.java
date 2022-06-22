@@ -23,8 +23,20 @@ public class MusicDaoImpl implements MusicDao {
     public Music findById(int mid) {
         String sql = "select * from music where mid=?";
         Music music = null;
-        music = JDBCUtils.getTemplate().queryForObject(sql, new BeanPropertyRowMapper<Music>(Music.class), mid);
+        try{
+            music = JDBCUtils.getTemplate().queryForObject(sql, new BeanPropertyRowMapper<Music>(Music.class), mid);
+        }catch (Exception e){
+        }
         return music;
+    }
+
+    @Override
+    public int findTotal(String keyword) {
+        String sql = "select count(*) from music where 1=1";
+        if (keyword != null && keyword.length() > 0) {
+            sql += " and mname like %" + keyword + "%";
+        }
+        return JDBCUtils.getTemplate().queryForObject(sql, Integer.class);
     }
 
     @Override

@@ -1,10 +1,9 @@
 package cn.itcast.music.web.servlet;
 
-
-import cn.itcast.music.music_domain.ResultInfo;
-import cn.itcast.music.music_domain.User;
-import cn.itcast.music.music_service.UserService;
-import cn.itcast.music.music_service.impl.UserServiceImpl;
+import cn.itcast.music.domain.ResultInfo;
+import cn.itcast.music.domain.User;
+import cn.itcast.music.service.UserService;
+import cn.itcast.music.service.impl.UserServiceImpl;
 import cn.itcast.music.util.ByteUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.beanutils.BeanUtils;
@@ -13,9 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 
 @WebServlet("/user/*")

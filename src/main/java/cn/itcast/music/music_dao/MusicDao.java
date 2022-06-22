@@ -9,5 +9,7 @@ public interface MusicDao {
 
     Music findById(int mid);
 
+    int findTotal(String keyword);
+
     List<Music> getMusicPage(int start,int pageSize,String keyword);
 }

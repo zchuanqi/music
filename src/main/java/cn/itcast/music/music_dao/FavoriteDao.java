@@ -6,4 +6,6 @@ public interface FavoriteDao {
     void collect(String username, int mid);
 
     Favorite findOne(String username, int mid);
+
+    void removeCollect(String username,int mid);
 }

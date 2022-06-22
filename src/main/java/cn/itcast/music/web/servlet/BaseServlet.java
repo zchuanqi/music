@@ -39,9 +39,4 @@ public class BaseServlet extends HttpServlet {
         resp.setContentType("application/json;charset=utf-8");
         mapper.writeValue(resp.getOutputStream(),obj);
     }
-
-    public void writeJsonValueAsString(Object obj) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValueAsString(obj);
-    }
 }

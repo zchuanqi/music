@@ -19,4 +19,9 @@ public class FavoriteServiceImpl implements FavoriteService {
         Favorite favorite = favoriteDao.findOne(username, mid);
         return favorite != null;
     }
+
+    @Override
+    public void removeCollect(String username, int mid) {
+        favoriteDao.removeCollect(username, mid);
+    }
 }

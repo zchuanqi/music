@@ -6,4 +6,6 @@ public interface UserService {
     boolean regist(User user);
 
     User login(User user);
+
+    String getImageByName(String username);
 }
